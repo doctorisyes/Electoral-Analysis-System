@@ -1,61 +1,66 @@
 <p align="center">
-    <img src="resources/images/easLogo.png" style="width: 20vw">
+    <img src="/resources/images/easLogo.png">
 </p>
 
 <h3 align="center">Electoral Analysis System</h3>
 
 <p align="center">
-A Python-Flask web app for anylysing elections.
+A Python-Flask web app for analysing elections.
 </p>
 
 ## ❓ What is the EAS?
-EAS is a web app that allows you to analyse elections with ease through our intiuitive GUI. EAS automates the process of finding, calculating, abstracting and presenting graphical statistics.
+EAS is a web app that allows you to analyse elections with ease through an intuitive graphical interface. It automates the process of sourcing, calculating, abstracting, and visually presenting electoral statistics.
 
-EAS heavily relies on <a href="https://www.electionguide.org">ElectionGuide</a> to source its electoral information, and this project would not be possible without them.
+EAS relies heavily on <a href="https://www.electionguide.org">ElectionGuide</a> to source its data. This project would not be possible without their contributions.
 
-I am planning to eventually deploy this web app on a Raspberry Pi server, but that will not happen untill the first prototype is complete.
+I plan to eventually deploy the app on a Raspberry Pi server, once the first prototype is complete.
 
-This project also serves as my coursework for my OCR A Level Computer Science NEA, hence no one else can contribute to this project untill it is submitted to OCR. But of course, like all repositories be free to download and experiment with the EAS!
+This project also serves as my coursework for the OCR A Level Computer Science NEA. As a result, I cannot accept contributions until after it has been submitted. However, feel free to clone and experiment with the EAS for your own learning.
 
 ## 📋 Requirements
-To install EAS you will need:
-- Python v3 /w pip
+To run EAS, you will need:
+- Python 3.x with pip
 
-During installation you will be able to automatically install your dependencies later.
+Dependencies will be installed during the setup process.
 
 ## ⚙️ Installation
-**At the time of writing the project is not launchable!**
+**Note: At the time of writing, the project is not yet launchable!**
 
-To install EAS, clone the repository and run it in a Python virtual enviorment. (you may need to use "python3" as opposed to "python" depending on how Python is installed on your system)
+To set up EAS, clone the repository and use a virtual environment. (You may need to use `python3` depending on your system configuration.)
 
 1. **Clone the repository:**
-
    ```bash
    git clone https://github.com/doctorisyes/Electoral-Analysis-System.git
    cd Electoral-Analysis-System
-2. **Create and activate a virtual enviorment**
+   ```
 
-    ```bash
-    python -m venv venv
-    source venv/bin/activate  # On Windows: venv\Scripts\activate
-3. **Install dependencies**
+2. **Create and activate a virtual environment:**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
 
-    ```bash
-    pip install -r requirements.txt
-4. **Run the program**
+3. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-    ```bash
-    python main.py
+4. **Run the program:**
+   ```bash
+   python main.py
+   ```
+
 ## 📦 Dependencies
-The Python backend uses a multitude of dependencies:
+The backend uses the following libraries:
 - Flask
-- Requests Library
-- to be continued... (as project develops)
+- requests  
+*(More to be added as the project develops.)*
 
 ## 🤝 Contributing
-Due to the nature of this project being my coursework, I cannot accept any contributions untill after the project is sent to OCR.
+As this project is coursework, I cannot accept contributions until it has been submitted to OCR.
 
 ## ⚖️ License
-This repository uses this licence: Creative Commons Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)
+This repository uses the **Creative Commons Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)** license.
+
 ## 🧑‍💻 Author
-**Samuel Douek** – [@justsamueld](https://github.com/doctorisyes)
+**Samuel Douek** – [@doctorisyes](https://github.com/doctorisyes)
