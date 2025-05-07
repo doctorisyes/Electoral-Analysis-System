@@ -9,7 +9,7 @@ A Python-Flask web app for analysing elections.
 </p>
 
 ## ❓ What is the EAS?
-EAS is a web app that allows you to analyse elections with ease through our intiuitive GUI. EAS automates the process of finding, calculating, abstracting and presenting graphical statistics.
+EAS is a web app that allows you to analyse elections with ease through our intuitive GUI. EAS automates the process of finding, calculating, abstracting and presenting graphical statistics.
 
 EAS heavily relies on <a href="https://www.electionguide.org">ElectionGuide</a> to source its electoral information, and this project would not be possible without them.
 
