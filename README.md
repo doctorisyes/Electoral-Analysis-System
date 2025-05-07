@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="/resources/images/easLogo.png">
+    <img src="/resources/images/easLogo.png" alt="EAS Logo">
 </p>
 
 <h3 align="center">Electoral Analysis System</h3>
