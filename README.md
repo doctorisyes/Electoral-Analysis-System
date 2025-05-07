@@ -5,7 +5,7 @@
 <h3 align="center">Electoral Analysis System</h3>
 
 <p align="center">
-A Python-Flask web app for anylysing elections.
+A Python-Flask web app for analysing elections.
 </p>
 
 ## ❓ What is the EAS?
