@@ -1,0 +1,1 @@
+# Run with virtualenv and install dependencies from requirements.txt in order to run main.py
