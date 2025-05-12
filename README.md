@@ -23,7 +23,7 @@ To run EAS, you will need:
 
 Dependencies will be installed during the setup process.
 
-## ⚙️ Installation
+## ⚙️ Installation and Launch
 **Note: At the time of writing, the project is not yet launchable!**
 
 To set up EAS, clone the repository and use a virtual environment. (You may need to use `python3` depending on your system configuration.)
@@ -49,6 +49,10 @@ To set up EAS, clone the repository and use a virtual environment. (You may need
    ```bash
    python main.py
    ```
+
+5. **Go to this page into your browser:**
+   
+   [http://localhost:5000](http://localhost:5000)
 
 ## 📦 Dependencies
 The backend uses the following libraries:
