@@ -1,3 +1,120 @@
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
     background-color: white;
+    font-family: system-ui, sans-serif;
+}
+
+.placeholder-image img {
+    background-color: black;
+    min-width: 3em;
+}
+
+.hidden {
+    display: none !important;
+}
+
+header {
+    background-color: #ADB9CA;
+    height: 16vh;
+    display: flex;
+}
+
+#logo {
+    align-self: center;
+    height: 100%;
+    padding: 2rem;
+    padding-left: 1.5rem;
+    border-right: 0.1rem solid black
+}
+
+#menu-container {
+    width: 100%;
+    height: 100%
+}
+
+#ribbon {
+    border-bottom: 0.1rem solid black;
+    height: 39%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+#ribbon h3 {
+    font-size: 2em;
+    font-weight: 400;
+    margin-left: 0.5em;
+    color: black;
+    text-shadow: 2px 1px 4px rgba(0,0,0,0.6);
+    transition: ease 0.1s;
+}
+
+#ribbon h3:hover {
+    background-color: #8497B0;
+    border-radius: 0.25em;
+}
+
+.ribbon-option-underlined {
+    text-decoration: underline ;
+    text-decoration-color: #FF0000;
+    text-decoration-thickness: 0.2rem;
+    text-underline-offset: 0.2rem;
+}
+
+#toolbar-container {
+    width: 100%;
+    height:61%;
+
+}
+
+.toolbar {
+    height: 100%;
+    display: flex;
+    padding-left: 0.5em;
+    gap: 0.5em;
+    align-items: center;
+}
+
+.tool  {
+    display: flex;
+    flex-direction: column;
+    padding: 0.25em;
+    height: 90%;
+    max-width: fit-content;
+    transition: ease 0.1s;
+}
+
+.tool:hover {
+    background-color: #8497B0;
+    border-radius: 0.5em;
+}
+
+.tool img {
+    height: 75%;
+    max-width: 80%;
+    align-self: center;
+}
+
+.tool p {
+    margin-top: 0.2em;
+    font-weight: 200;
+    font-size: 0.75em;
+}
+
+main {
+    background-color: #8FAADC;
+    height: 84vh;
 }

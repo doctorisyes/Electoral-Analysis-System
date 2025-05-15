@@ -5,6 +5,109 @@
     <title>Electoral Analysis System</title> <!-- Sets the title of the page -->
 </head>
 <body>
-    <h1>This is a placeholder!</h1> <!-- Main heading of the page -->
+    <header>
+        <img id="logo" src="{{ url_for('static', filename='images/easLogo.png')}}">
+        <section id="menu-container">
+            <div id="ribbon">
+                <h3 onclick="changeToolbar(this)" class="ribbon-option-underlined" data-toolbar-id="dataset-toolbar">Dataset</h3>
+                <h3 onclick="changeToolbar(this)" data-toolbar-id="trends-toolbar">Trends</h3>
+                <h3 onclick="changeToolbar(this)" data-toolbar-id="visualise-toolbar">Visualise</h3>
+            </div>
+            <div id="toolbar-container">
+            </div>
+            <script>
+                class Tool {
+                    constructor(name, imageSrc, toolId) {
+                        this.name = name;
+                        this.imageSrc = imageSrc;
+                        this.toolId = toolId;
+                    }
+                }
+
+                class Toolbar {
+                    constructor(name, tools, isHidden) {
+                        this.tools = tools;
+                        let classes = "toolbar";
+                        if (isHidden) {
+                            classes += " hidden";
+                        }
+                        let innerHTML = `<div class='${classes}' id='${name}'>
+                            </div>`;
+                        document.getElementById("toolbar-container").innerHTML += innerHTML;
+                        this.DomToolbar = document.getElementById(name);
+                    }
+                    renderToolbar() {
+                        let innerHTML = "";
+                        for (const tool of this.tools) {
+                            let classes = "tool";
+                            if (tool.imageSrc == "") {
+                                classes += " placeholder-image";
+                            }
+                            let toolHTML = `<div class='${classes}' data-tool-id='${tool.toolId}'>
+                                <img src='${tool.imageSrc}'>
+                                <p>${tool.name}</p>
+                                </div>`;
+                            innerHTML += toolHTML;
+                        }
+                        this.DomToolbar.innerHTML = innerHTML;
+                    }
+                    
+                }
+
+                const datasetTools = [
+                    new Tool("Load Election", "{{ url_for('static', filename='images/db.svg') }}", "loadElection"),
+                    new Tool("Search Election", "{{ url_for('static', filename='images/search.svg') }}", "searchElection"),
+                    new Tool("Import Custom", "{{ url_for('static', filename='images/file.svg') }}", "importCustom"),
+                    new Tool("Select Data", "{{ url_for('static', filename='images/point.svg') }}", "selectData"),
+                ];
+                const datasetToolbar = new Toolbar("dataset-toolbar", datasetTools, false);
+                datasetToolbar.renderToolbar();
+
+                const trendsTools = [
+                    new Tool("Placeholder", "", ""),
+                ];
+                const trendsToolbar = new Toolbar("trends-toolbar", trendsTools, true);
+                trendsToolbar.renderToolbar();
+
+                const visualiseTools = [
+                    new Tool("Auto-Stats", "{{ url_for('static', filename='images/wand.svg') }}", "autoStats"),
+                    new Tool("Swingometer", "{{ url_for('static', filename='images/swingometer.svg') }}", "swingometer"),
+                    new Tool("Bar Chart", "{{ url_for('static', filename='images/barChart.svg') }}", "barChart"),
+                    new Tool("Pie Chart", "{{ url_for('static', filename='images/pieChart.svg') }}", "pieChart"),
+                    new Tool("Change Datapoint", "{{ url_for('static', filename='images/file.svg') }}", "changeDatapoint"),
+                ];
+                const visualiseToolbar = new Toolbar("visualise-toolbar", visualiseTools, true);
+                visualiseToolbar.renderToolbar();
+
+                function hideAllToolbars() {
+                    const toolbars = document.getElementsByClassName("toolbar");
+                    for (const toolbar of toolbars) {
+                        if (toolbar.classList.contains("hidden") == false) {
+                            toolbar.classList.add("hidden");
+                        }
+                    }
+                }
+
+                function changeToolbar(element) {
+                    const toolbarId = element.getAttribute("data-toolbar-id");
+                    hideAllToolbars();
+                    document.getElementById(toolbarId).classList.remove("hidden");
+
+                    removeUnderlinesFromRibbons();
+                    element.classList.add("ribbon-option-underlined");
+            
+                }
+
+                function removeUnderlinesFromRibbons() {
+                    const ribbons = document.getElementsByClassName("ribbon-option-underlined");
+                    for (const ribbon of ribbons) {
+                        ribbon.classList.remove("ribbon-option-underlined");
+                    }
+                }
+            </script>
+        </section>
+    </header>
+    <main>
+    </main>
 </body>
 </html>
