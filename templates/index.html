@@ -3,8 +3,30 @@
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"> <!-- Link the styles.css file -->
     <title>Electoral Analysis System</title> <!-- Sets the title of the page -->
+    <script>
+        window.static_folder = "{{ url_for('static', filename='') }}";
+    </script>   
 </head>
 <body>
-    <h1>This is a placeholder!</h1> <!-- Main heading of the page -->
+    <header>
+        <img id="logo" src="{{ url_for('static', filename='images/easLogo.png')}}">
+        <section id="menu-container">
+            <div id="ribbon">
+                <h3 onclick="changeToolbar(this)" class="ribbon-option-underlined" data-toolbar-id="dataset-toolbar">Dataset</h3>
+                <h3 onclick="changeToolbar(this)" data-toolbar-id="trends-toolbar">Trends</h3>
+                <h3 onclick="changeToolbar(this)" data-toolbar-id="visualise-toolbar">Visualise</h3>
+            </div>
+            <div id="toolbar-container">
+            </div>
+            <script src="{{ url_for('static', filename='js/ribbonAndToolbar.js') }}"></script>
+        </section>
+    </header>
+    <main>
+        <div id="load-election-workspace" class="workspace">This is placeholder text for the load election workspace</div>
+        <div id="search-election-workspace" class="workspace">This is placeholder text for the search election workspace</div>
+        <div id="auto-stats-workspace" class="workspace">This is a placeholder text for the auto-stats workspace</div>
+        <script src=" {{ url_for('static', filename='js/workspaces.js') }}"></script>
+    </main>
+
 </body>
 </html>
