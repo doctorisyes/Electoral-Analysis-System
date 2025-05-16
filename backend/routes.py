@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template # Acess the Blueprint class and the render_template function from Flask
+from flask import Blueprint, render_template # Access the Blueprint class and the render_template function from Flask
 
 mainBlueprint = Blueprint('main_blueprint', __name__) # Create an instance of the blueprint class
 
