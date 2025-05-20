@@ -27,9 +27,9 @@ jobs:
           pip install -r requirements.txt
 
       - name: PyInstaller Action
-        uses: Martin005/pyinstaller-action@v1.2.0
+        uses: sayyid5416/pyinstaller@v1.8.0
         with:
-          spec: 'EAS.spec'            # path to your spec file
+          spec: 'EAS.spec'            # your spec file path
           requirements: 'requirements.txt'
           python_ver: '3.10'
           python_arch: 'x64'
