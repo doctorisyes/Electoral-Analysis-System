@@ -26,7 +26,7 @@ exe = EXE(
     strip=False,
     upx=True,
     console=False,
-    icon='resources/icons/easLogo.icns'
+    icon='resources/icons/easLogo.icns',
 )
 
 coll = COLLECT(
@@ -42,6 +42,6 @@ coll = COLLECT(
 app = BUNDLE(
     coll,
     name='EAS.app',
-    icon=icon_path,             # embed icon in your app bundle
+    icon='resources/icons/easLogo.icns',             # embed icon in your app bundle
     bundle_identifier=None,
 )
