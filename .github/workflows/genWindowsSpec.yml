@@ -1,0 +1,19 @@
+name: Generate Windows spec file
+
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          pip install -r requirements.txt
+          pyinstaller --add-data "backend:backend" --add-data "resources:resources" --add-data "static:static" --add-data "templates:templates" main.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-spec
+          path: main.spec

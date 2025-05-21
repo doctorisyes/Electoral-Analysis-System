@@ -1,24 +1,9 @@
 # -*- mode: python ; coding: utf-8 -*-
 
-import platform
-
-from PyInstaller.utils.hooks import collect_dynamic_libs
-
-binaries = collect_dynamic_libs('pythonnet')
-
-system = platform.system()
-
-if system == 'Darwin':
-    icon_path = 'resources/icons/easLogo.icns'
-elif system == 'Windows':
-    icon_path = 'resources/icons/easLogo.ico'
-else:
-    icon_path = None
-
 a = Analysis(
     ['main.py'],
     pathex=[],
-    binaries=binaries,
+    binaries=[],
     datas=[('backend', 'backend'), ('resources', 'resources'), ('static', 'static'), ('templates', 'templates')],
     hiddenimports=[],
     hookspath=[],
@@ -41,7 +26,7 @@ exe = EXE(
     strip=False,
     upx=True,
     console=False,
-    icon=icon_path
+    icon='resources/icons/easLogo.icns'
 )
 
 coll = COLLECT(
