@@ -1,0 +1,83 @@
+name: Build executables
+
+on:
+  push:
+    branches:
+      - build
+  workflow_dispatch:
+
+jobs:
+  build_windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run PyInstaller with spec
+        run: pyinstaller EAS-windows.spec
+
+      - name: Upload Windows build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: EAS-windows
+          path: dist/
+
+  build_linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run PyInstaller with spec
+        run: pyinstaller EAS-macos.spec
+
+      - name: Upload Linux build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: EAS-linux
+          path: dist/
+
+  build_macos:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run PyInstaller with spec
+        run: pyinstaller EAS-macos.spec
+
+      - name: Upload macOS build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: EAS-macos
+          path: dist/
