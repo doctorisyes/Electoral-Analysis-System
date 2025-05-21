@@ -1,83 +1,39 @@
-name: Build executables
+name: PyInstaller Cross-Platform Build
 
 on:
   push:
     branches:
-      - build
-  workflow_dispatch:
+      - main  # Change this to your desired branch
 
 jobs:
-  build_windows:
-    runs-on: windows-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.11
+          python-version: '3.11'  # Adjust as needed
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install pyinstaller
+          pip install -r requirements.txt || true  # Optional
 
-      - name: Run PyInstaller with spec
-        run: pyinstaller EAS-windows.spec
-
-      - name: Upload Windows build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: EAS-windows
-          path: dist/
-
-  build_linux:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.11
-
-      - name: Install dependencies
+      - name: Build executable with PyInstaller
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pyinstaller --add-data "backend:backend" --add-data "resources:resources" --add-data "static:static" --add-data "templates:templates" --windowed --name=EAS --icon "${{ matrix.os == 'windows-latest' && 'resources/icons/app.ico' || (matrix.os == 'macos-latest' && 'resources/icons/app.icns') }}" main.py
+        shell: bash
 
-      - name: Run PyInstaller with spec
-        run: pyinstaller EAS-windows.spec
-
-      - name: Upload Linux build artifacts
+      - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: EAS-linux
-          path: dist/
-
-  build_macos:
-    runs-on: macos-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.11
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Run PyInstaller with spec
-        run: pyinstaller EAS-macos.spec
-
-      - name: Upload macOS build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: EAS-macos
-          path: dist/
+          name: ${{ matrix.os }}-build
+          path: dist/*
