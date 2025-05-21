@@ -29,7 +29,7 @@ jobs:
 
       - name: Build executable with PyInstaller
         run: |
-          pyinstaller --add-data "backend:backend" --add-data "resources:resources" --add-data "static:static" --add-data "templates:templates" --windowed --name=EAS --icon "${{ matrix.os == 'windows-latest' && 'resources/icons/app.ico' || (matrix.os == 'macos-latest' && 'resources/icons/app.icns') }}" main.py
+          pyinstaller --add-data "backend:backend" --add-data "resources:resources" --add-data "static:static" --add-data "templates:templates" --windowed --name=EAS --icon "${{ matrix.os == 'windows-latest' && 'resources/icons/easLogo.ico' || (matrix.os == 'macos-latest' && 'resources/icons/easLogo.icns') }}" main.py
         shell: bash
 
       - name: Upload build artifact
