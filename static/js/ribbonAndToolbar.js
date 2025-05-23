@@ -8,15 +8,23 @@ class Tool { // Creates a class for tools
 
 class Toolbar {
     constructor(name, tools, isHidden) {
+        this.toolbarId = name.toLowerCase() + "-toolbar"; // Sets the toolbarId to the name passed in
         this.tools = tools; // Sets the instance variable tools to the tools passed in
-        let classes = "toolbar"; 
+        let toolbarContainerClasses = "toolbar";
+        let ribbonOptionClasses = "";
         if (isHidden) {
-            classes += " hidden"; // if the user asked for hidden, it adds the hidden class to the class text
+            toolbarContainerClasses += " hidden"; // if the user asked for hidden, it adds the hidden class to the class text
+        } else if (!isHidden) {
+            ribbonOptionClasses = " ribbon-option-underlined"; // if the user asked for visible, it adds the ribbon option class to the class text
         }
-        let innerHTML = `<div class='${classes}' id='${name}'>
+
+        let ribbonOptionHTML = `<h3 onclick="changeToolbar(this)" class="${ribbonOptionClasses}" data-toolbar-id="${this.toolbarId}">${name}</h3>`;
+        document.getElementById("ribbon").innerHTML += ribbonOptionHTML; // adds the HTML to the ribbon container
+
+        let innerHTML = `<div class='${toolbarContainerClasses}' id='${this.toolbarId}'>
             </div>`; // Creates the HTML for the toolbar
         document.getElementById("toolbar-container").innerHTML += innerHTML; // adds the HTML to the toolbar container
-        this.DomToolbar = document.getElementById(name); // Gets a DOM reference pointer to the toolbar
+        this.DomToolbar = document.getElementById(this.toolbarId); // Gets a DOM reference pointer to the toolbar
 
         this.renderToolbar() // Calls the renderToolbar function to add the tools to the toolbar
     }
@@ -49,13 +57,13 @@ const datasetTools = [
     new Tool("Select Data", `${window.static_folder}images/point.svg`, "selectData"),
 ]; // Creates a list of tool objects
 
-const datasetToolbar = new Toolbar("dataset-toolbar", datasetTools, false);
+const datasetToolbar = new Toolbar("Dataset", datasetTools, false);
 // creates a toolbar object with the list of tools from before
 
 const trendsTools = [
     new Tool("Placeholder", "", ""),
 ];
-const trendsToolbar = new Toolbar("trends-toolbar", trendsTools, true);
+const trendsToolbar = new Toolbar("Trends", trendsTools, true);
 
 const visualiseTools = [
     new Tool("Auto-Stats", `${window.static_folder}/images/wand.svg`, "auto-stats-workspace"),
@@ -64,10 +72,7 @@ const visualiseTools = [
     new Tool("Pie Chart", `${window.static_folder}/images/pieChart.svg`, "pieChart"),
     new Tool("Change Datapoint", `${window.static_folder}/images/file.svg`, "changeDatapoint"),
 ];
-const visualiseToolbar = new Toolbar("visualise-toolbar", visualiseTools, true);
-
-
-
+const visualiseToolbar = new Toolbar("Visualise", visualiseTools, true);
 
 
 function hideAllToolbars() { // Goes through all the toolbars with the class toolbar and hides them
