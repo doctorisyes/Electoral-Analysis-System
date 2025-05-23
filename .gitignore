@@ -4,6 +4,7 @@ __pycache__/
 *.pyo
 .DS_Store  # Mac specific
 .vscode/  # VSCode settings
-venv-packages/
 build/
 dist/
+main_db.json
+venv-packages/
