@@ -8,5 +8,5 @@ app = Flask(__name__) # Create a Flask app instance
 app.register_blueprint(mainBlueprint) # Register the routes from routes.py with the Flask app
 
 if __name__ == '__main__': # Only run this if this file is run directly
-    webview.create_window('Electoral Analysis System', app, width=1280, height=810)
+    webview.create_window('Electoral Analysis System', app, min_size=(1000,720), width=1280, height=810)
     webview.start()
