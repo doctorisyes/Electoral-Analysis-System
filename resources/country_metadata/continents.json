@@ -247,5 +247,9 @@
   "ID": "AS",
   "UA": "EU",
   "QA": "AS",
-  "MZ": "AF"
+  "MZ": "AF", 
+  "EU": "EU",
+  "NT": "AS",
+  "GB-SCT": "EU",
+  "Continents": ["AF", "EU", "AS", "OC", "SA", "NA", "AN"]
 }
