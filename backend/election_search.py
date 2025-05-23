@@ -17,6 +17,8 @@ def getElectionsByCountryCode(countryCode):
 def refineElectionName(name, year):
     if name[-4:] == str(year):
         return name[:-5]
+    else:
+        return name
     
 def findElectionYear(election):
     if election["election_range_start_date"] != None:
