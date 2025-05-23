@@ -4,7 +4,7 @@ def request_api(): # Function to request data from the ElectionGuide API
     domain = "https://electionguide.org/" # Domain of the API provider
     path = "api/v2/elections_demo/?format=json" # Path to the specific API endpoint
 
-    token = "f37e79e510d0506ab9a8d8b82d37ae8a4f5c9b9b" # Secret API token for authentication
+    token = "CANNOT BE SHARED" # Secret API token for authentication
 
     url = domain + path # Combination of domain and path for request
 
