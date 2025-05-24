@@ -118,3 +118,166 @@ main {
     background-color: #8FAADC;
     height: 84vh;
 }
+
+.workspace {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 3%;
+    box-sizing: border-box;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+}
+
+.load-election-section {
+    height: 100%;
+    width: 100%;
+    
+}
+
+.load-election-section h2 {
+    text-align: center;
+    background-color: #8497B0;
+    padding: 0.75rem;
+    border-radius: 1rem;
+    color: white;
+    font-weight: 200;
+}
+
+#continent-section {
+    width: 25%;
+}
+
+#country-section {
+    width: 25%;
+}
+
+#election-section {
+    width: 50%;
+}
+
+.continent-option {
+    margin-top: 1.25rem;
+    display: flex;
+    width: 100%;
+    height: 11%;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    transition: ease 0.1s;
+    border-radius: 0.5rem;
+}
+
+.continent-option:hover {
+    background-color: #acb6c3;
+}
+
+.continent-option-chosen {
+    background-color: #8497B0 !important;
+
+}
+
+.continent-option img {
+    height: 100%;
+    object-fit: cover;
+    margin-right: 2rem;
+}
+
+.continent-option h3 {
+    font-size: 150%;
+    flex: 1;
+    text-align: center;
+    color: white;
+    font-weight: 200;
+}
+
+#country-scroll-section {
+    height: 84.5%;
+    overflow-y: auto;
+}
+
+#election-scroll-section {
+    height: 84.5%;
+    overflow-y: auto;
+}
+
+.country-option {
+    margin-top: 1.25rem;
+    display: flex;
+    width: 100%;
+    height: 13%;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    transition: ease 0.1s;
+    border-radius: 0.5rem;
+}
+
+.country-option:hover {
+    background-color: #acb6c3;
+}
+
+.country-option-chosen {
+    background-color: #8497B0 !important;
+
+}
+
+.country-option img {
+    height: 80%;
+    aspect-ratio: 3/2;
+    object-fit: cover;
+    margin-right: 2rem;
+    border-radius: 0.5rem;
+}
+
+.country-option h3 {
+    font-size: 150%;
+    flex: 1;
+    text-align: center;
+    color: white;
+    font-weight: 200;
+}
+
+.election-option {
+    margin-top: 1.25rem;
+    display: flex;
+    width: 100%;
+    height: 13%;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    transition: ease 0.1s;
+    border-radius: 0.5rem;
+}
+
+.election-option:hover {
+    background-color: #acb6c3;
+}
+
+.election-option-chosen {
+    background-color: #8497B0 !important;
+
+}
+
+.election-option h3 {
+    font-size: 400%;
+    object-fit: cover;
+    margin-right: 2rem;
+    border-radius: 0.5rem;
+    color: white;
+    font-weight: 1000;
+    text-shadow: 2px 1px 4px rgba(0,0,0,0.6);
+}
+
+.election-option span {
+    font-size: 150%;
+    flex: 1;
+    text-align: center;
+    color: white;
+    font-weight: 200;
+}
