@@ -50,14 +50,11 @@ To set up EAS, clone the repository and use a virtual environment. (You may need
    python main.py
    ```
 
-5. **Go to this page into your browser:**
-   
-   [http://localhost:5000](http://localhost:5000)
-
 ## 📦 Dependencies
 The backend uses the following libraries:
 - Flask
-- requests  
+- requests
+- Pywebview
 *(More to be added as the project develops.)*
 
 ## 🤝 Contributing
