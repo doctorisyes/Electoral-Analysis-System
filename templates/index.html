@@ -12,9 +12,6 @@
         <img id="logo" src="{{ url_for('static', filename='images/easLogo.png')}}">
         <section id="menu-container">
             <div id="ribbon">
-                <h3 onclick="changeToolbar(this)" class="ribbon-option-underlined" data-toolbar-id="dataset-toolbar">Dataset</h3>
-                <h3 onclick="changeToolbar(this)" data-toolbar-id="trends-toolbar">Trends</h3>
-                <h3 onclick="changeToolbar(this)" data-toolbar-id="visualise-toolbar">Visualise</h3>
             </div>
             <div id="toolbar-container">
             </div>
@@ -22,7 +19,22 @@
         </section>
     </header>
     <main>
-        <div id="load-election-workspace" class="workspace">This is placeholder text for the load election workspace</div>
+        <div id="load-election-workspace" class="workspace">
+            <div class="load-election-section" id="continent-section">
+                <h2>Continent</h2>
+            </div>
+            <div class="load-election-section" id="country-section">
+                <h2>Country</h2>
+                <div id="country-scroll-section">
+                </div>
+            </div>
+            <script src="{{ url_for('static', filename='js/countriesAndElections.js') }}"></script>
+            <div class="load-election-section" id="election-section">
+                <h2>Election/Referendum</h2>
+                <div id="election-scroll-section">
+                </div>
+            </div>
+        </div>
         <div id="search-election-workspace" class="workspace">This is placeholder text for the search election workspace</div>
         <div id="auto-stats-workspace" class="workspace">This is a placeholder text for the auto-stats workspace</div>
         <script src=" {{ url_for('static', filename='js/workspaces.js') }}"></script>

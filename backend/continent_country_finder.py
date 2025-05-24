@@ -1,9 +1,9 @@
 import json # Import JSON for data handling
 from pathlib import Path # Import Path for file path handling
-from api_requests import read_api_data
+from . import api_requests 
 
 def findCountries():
-    localDb = read_api_data() # Gets locally caches API data
+    localDb = api_requests.read_api_data() # Gets locally caches API data
     countries = set() # Uses set to prevent repetition of countrues
     for election in localDb:
         countries.add((election['district']['district_country'], election['district']['district_name'])) 
@@ -30,9 +30,9 @@ def getContinentLists():
             except KeyError:
                 print("Country could not be added. Map needs to be updated")
         elif country[0] == "Z2":
-            continentLists[continentMapper['GB-SCT']].append(country) # Use a custom code for Scotland
+            continentLists[continentMapper['GB-SCT']].append(["GB-SCT", country[1]]) # Use a custom code for Scotland
         elif country[0] == "KS":
-            continentLists[continentMapper['XK']].append(country) # Use a custom code for Kosovo
+            continentLists[continentMapper['XK']].append(["XK", country[1]]) # Use a custom code for Kosovo
 
     for continent in continentMapper['Continents']:
         continentLists[continent] = sorted(continentLists[continent], key=lambda x: x[1]) 
