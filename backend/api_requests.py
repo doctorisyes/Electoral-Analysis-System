@@ -3,6 +3,7 @@ from pathlib import Path # Import Path for file path handling
 def request_api(): # Function to request data from the ElectionGuide API
     domain = "https://electionguide.org/" # Domain of the API provider
     path = "api/v2/elections_demo/?format=json" # Path to the specific API endpoint
+    path = "api/v3/election_details/?format=json" # Path to the specific API endpoint
 
     token = "CANNOT BE SHARED" # Secret API token for authentication
 
@@ -30,4 +31,4 @@ def read_api_data():
     return data # Return the JSON data
 
 if __name__ == "__main__":
-    print(read_api_data())
+    print(request_api()) # If this file is run directly, call the request_api function
