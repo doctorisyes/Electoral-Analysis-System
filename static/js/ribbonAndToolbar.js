@@ -54,7 +54,7 @@ const datasetTools = [
     new Tool("Load Election", `${window.static_folder}images/db.svg`, "load-election-workspace"),
     new Tool("Search Election", `${window.static_folder}images/search.svg`, "search-election-workspace"),
     new Tool("Import Custom", `${window.static_folder}images/file.svg`, "importCustom"),
-    new Tool("Select Data", `${window.static_folder}images/point.svg`, "selectData"),
+    new Tool("Select Data", `${window.static_folder}images/point.svg`, "select-data-workspace"),
 ]; // Creates a list of tool objects
 
 const datasetToolbar = new Toolbar("Dataset", datasetTools, false);

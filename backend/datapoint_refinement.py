@@ -28,12 +28,78 @@ def determineExtraDatapoints(election):
     return extraDatapoints
 
 def getDatapointsList(election):
-    datapointsList = determineExtraDatapoints(election)
+    datapointsStruct = datapointKeysRecusrion(election)
 
-    for datapoint in election.keys():
-        print(datapoint)
+    simplifiedDatapointsStruct = []
 
-    return datapointsList
+    # Case parties
+    counter = 0
+    for datapoint in datapointsStruct:
+        if type(datapoint) == dict:
+            if list(datapoint.keys())[0] == 'parties' or list(datapoint.keys())[0] == 'voting_methods' or list(datapoint.keys())[0] == 'candidates':
+                simplifiedDatapointsStruct.append(list(datapoint.keys())[0])
+            else:
+                simplifiedDatapointsStruct.append(datapoint)
+        else:
+            simplifiedDatapointsStruct.append(datapoint)
+            
+
+        counter += 1
+
+    datapointsStruct = simplifiedDatapointsStruct
+
+    extraDatapoints = determineExtraDatapoints(election)
+    if extraDatapoints != []:
+        datapointsStruct.append({"eas_calculated": extraDatapoints})
+
+
+    return datapointsStruct
+
+def datapointKeysRecusrion(thing):
+    if type(thing) == str:
+        if thing == "":
+            return None
+    elif thing is None:
+        return None
+
+    datapoints = []
+
+    if (type(thing) == dict):
+
+        for key in thing.keys():
+            temp = datapointKeysRecusrion(thing[key])
+            if temp != None:
+                if temp == 'oneThingInside':
+                    datapoints.append(key)
+                else:
+                    datapoints.append({key: temp})
+
+        if datapoints != None and datapoints != []:
+            return datapoints
+        else:
+            return None
+    
+
+    elif (type(thing) == list) or (type(thing) == tuple):
+
+        tempDatapoints = []
+        for item in thing:
+            tempDatapoints.append(datapointKeysRecusrion(item))
+
+        
+
+
+        datapoints.extend(tempDatapoints)
+
+        if datapoints != None and datapoints != []:
+            return datapoints
+        else:
+            return None
+    
+    elif (type(thing) == str) or (type(thing) == int) or (type(thing) == float) or (type(thing) == bool) :
+        return 'oneThingInside'
+
+
 
 if __name__ == "__main__":
     print(getDatapointsList(election_search.getElectionById(4446)))
