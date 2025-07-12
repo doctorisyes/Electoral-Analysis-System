@@ -5,7 +5,8 @@
 <h3 align="center">Electoral Analysis System</h3>
 
 <p align="center">
-A Python-Flask web app for analysing elections.
+A Python-Flask web app for analysing elections.<br>
+<a href="https://eas.westhatchcss.tech">https://eas.westhatchcss.tech</a>
 </p>
 
 ## ❓ What is the EAS?
@@ -20,8 +21,11 @@ This project also serves as my coursework for the OCR A Level Computer Science N
 
 ## 📋 Requirements
 
-To run EAS, you will need:
+**For a limited time only, the EAS will also be hosted on a <a href="https://eas.westhatchcss.tech">web server</a> negating the need for any of this.**
 
+**EAS isn’t designed for small screens (e.g. phones). Please use a larger device for the best experience.**
+
+To run EAS, you will need:
 - Python 3.x with pip
 - An ElectionGuide API token (although a cached database has been included)
 
