@@ -37,7 +37,30 @@
         </div>
         <div id="search-election-workspace" class="workspace">This is placeholder text for the search election workspace</div>
         <div id="auto-stats-workspace" class="workspace">This is a placeholder text for the auto-stats workspace</div>
+        <div id="select-data-workspace" class="workspace">
+            <p id="select-data-election-name">General Election 2019</p>
+            <div id="datapoints-container">
+                <div class="select-data-scroller-container" id="unselected-datapoints-container">
+                    <h2>Unselected:</h2>
+                    <div id="unselected-datapoints-scroller" class="datapoint-scroller">
+                    </div>
+                </div>
+                <img id="biArrow" src="{{ url_for('static', filename='images/biArrow.svg')}}">
+                <div class="select-data-scroller-container" id="selected-datapoints-container">
+                    <h2>Selected:</h2>
+                    <div id="selected-datapoints-scroller" class="datapoint-scroller">
+                        <div id="no-datapoints-selected">
+                            <h2>?</h2>
+                            <p>No datapoints have been selected.<br>Click on a datapoint to transfer.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>
         <script src=" {{ url_for('static', filename='js/workspaces.js') }}"></script>
+        <script src=" {{ url_for('static', filename='js/datapoints.js') }}"></script>
     </main>
 
 </body>

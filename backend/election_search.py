@@ -15,18 +15,19 @@ def getElectionsByCountryCode(countryCode):
     return matchingElections
 
 def refineElectionName(name, year):
-    if name[-4:] == str(year):
-        return name[:-5]
+    if str(year) in name: # If the year is in the name
+        name = name.replace(str(year), "")
+        name = ' '.join(name.split())
+        return name
     else:
         return name
     
 def findElectionYear(election):
-    if election["election_range_start_date"] != None:
-        return election["election_range_start_date"][:4]
-    elif election["election_declared_start_date"] != None:
-        return election["election_declared_start_date"][:4]
-    elif election["original_election_year"] != None:
-        return str(election["original_election_year"])
+    electionStatus = election["election_status"] # Get the election status from the election dictionary
+    if electionStatus["election_range"]["election_range_start_date"] != None:
+        return electionStatus["election_range"]["election_range_start_date"][:4]
+    elif electionStatus["election_delared"]["election_declared_start_date"] != None:
+        return electionStatus["election_delared"]["election_declared_start_date"][:4]
 
 if __name__ == "__main__":
-    print(findElectionYear(getElectionById(3970)))
+    print(getElectionById(4446))

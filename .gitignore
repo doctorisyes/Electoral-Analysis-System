@@ -6,5 +6,5 @@ __pycache__/
 .vscode/  # VSCode settings
 build/
 dist/
-main_db.json
+ignore/
 venv-packages/
