@@ -73,8 +73,9 @@ To set up EAS, clone the repository and use a virtual environment. (You may need
 The backend uses the following libraries:
 
 - Flask
-- requests  
-  _(More to be added as the project develops.)_
+- requests
+- Pywebview
+*(More to be added as the project develops.)*
 
 ## 🤝 Contributing
 
