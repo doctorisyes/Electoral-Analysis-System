@@ -111,10 +111,15 @@ function getElectionOptions(code) {
 
 }
 
+let chosenElectionId = 4446;
+
 function chooseElection(element) {
+    chosenElectionId = element.getAttribute("data-election-id");
+
     if (document.getElementsByClassName("election-option-chosen").length > 0) {
         document.getElementsByClassName("election-option-chosen")[0].classList.remove("election-option-chosen");
         // Only remove the class of the existing chosen election option if there is one
     }
     element.classList.add("election-option-chosen"); // Add the class to the clicked element to mark it as chosen
+    fetchDatapoints(chosenElectionId);
 }

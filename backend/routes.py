@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template # Access the Blueprint class and the render_template function from Flask
 from . import continent_country_finder # Import the function that gets the list of countries and continents
 from . import election_search # Import the function that gets the elections by country code
+from . import datapoint_refinement
 
 mainBlueprint = Blueprint('main_blueprint', __name__) # Create an instance of the blueprint class
 
@@ -23,3 +24,12 @@ def fetchElectionsByCountry(countryCode):
             "election_year": election_search.findElectionYear(election)
         })
     return electionOption
+
+@mainBlueprint.route('/data/election/<electionId>/datapoints')
+def fetchDatapointsByElection(electionId):
+    electionId = int(electionId)
+    election = election_search.getElectionById(electionId)
+    if election != None:
+        datapoints = datapoint_refinement.getDatapointsList(election)
+        datapoints.insert(0, election['election_name']['en_US'])
+        return datapoints

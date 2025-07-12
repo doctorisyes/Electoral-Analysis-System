@@ -30,4 +30,4 @@ def findElectionYear(election):
         return electionStatus["election_delared"]["election_declared_start_date"][:4]
 
 if __name__ == "__main__":
-    print(findElectionYear(getElectionById(3970)))
+    print(getElectionById(4446))
