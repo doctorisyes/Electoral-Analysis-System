@@ -17,8 +17,23 @@ function fetchDatapoints(electionId) {
             document.getElementById('select-data-election-name').innerHTML = simpleDatapointsList.shift(); // Remove the first element which is the election name
 
             for (const datapoint of simpleDatapointsList) {
+                
+                let friendlyDatapoint = "";
+                let capitalise = true
+                for (let i=0; i<datapoint.length; i++) {
+                    if (datapoint[i] === "_") {
+                        friendlyDatapoint += " "
+                        capitalise = true
+                    } else if (capitalise === true) {
+                        friendlyDatapoint += datapoint[i].toUpperCase()
+                        capitalise = false
+                    } else {
+                        friendlyDatapoint += datapoint[i]
+                    }
+                }
+
                 document.getElementById("unselected-datapoints-scroller").innerHTML += `
-                <p onclick="toggleSelection(this)">${datapoint}</p>
+                <p onclick="toggleSelection(this)" data-datapoint-key="${datapoint}">${friendlyDatapoint}</p>
                 `
             }
          }) // Return the datapoints

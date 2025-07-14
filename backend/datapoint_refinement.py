@@ -36,7 +36,7 @@ def getDatapointsList(election):
     counter = 0
     for datapoint in datapointsStruct:
         if type(datapoint) == dict:
-            if list(datapoint.keys())[0] == 'parties' or list(datapoint.keys())[0] == 'voting_methods' or list(datapoint.keys())[0] == 'candidates':
+            if list(datapoint.keys())[0] == 'parties' or list(datapoint.keys())[0] == 'voting_methods' or list(datapoint.keys())[0] == 'candidates' or list(datapoint.keys())[0] == 'third_party_verification' or list(datapoint.keys())[0] == 'legal_environment':
                 simplifiedDatapointsStruct.append(list(datapoint.keys())[0])
             else:
                 simplifiedDatapointsStruct.append(datapoint)
