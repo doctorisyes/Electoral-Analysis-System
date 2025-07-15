@@ -33,7 +33,7 @@ function fetchDatapoints(electionId) {
                 }
 
                 document.getElementById("unselected-datapoints-scroller").innerHTML += `
-                <p onclick="toggleSelection(this)" data-datapoint-key="${datapoint}">${friendlyDatapoint}</p>
+                <p onclick="toggleSelection(this)" class="datapoint-option" data-datapoint-key="${datapoint}">${friendlyDatapoint}</p>
                 `
             }
          }) // Return the datapoints
