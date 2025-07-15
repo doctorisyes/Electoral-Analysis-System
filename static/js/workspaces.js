@@ -12,7 +12,15 @@ function changeWorkspace(element) { // Changes the workspace that is displayed t
     hideAllWorkspaces();
 
     const workspace = document.getElementById(workspaceId);
-    workspace.classList.remove("hidden");
+    if (workspace) {
+        workspace.classList.remove("hidden");
+    }
+
+    for (tool of document.getElementsByClassName('tool-chosen')) {
+        tool.classList.remove('tool-chosen')
+    }
+
+    element.classList.add('tool-chosen')
 }
 
 function workspacesInit() { // Initializes the workspaces by hiding all of them

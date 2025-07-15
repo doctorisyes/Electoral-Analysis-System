@@ -97,11 +97,20 @@ header {
     max-width: fit-content;
     transition: ease 0.1s;
     cursor: pointer;
+    border-radius: 0.5em;
 }
 
 .tool:hover {
+    background-color: #bec3c9;
+}
+
+.tool-chosen {
     background-color: #8497B0;
-    border-radius: 0.5em;
+    transition: ease 0.1s;
+}
+
+.tool-chosen:hover {
+    background-color: #90a4be;
 }
 
 .tool img {
@@ -329,6 +338,7 @@ main {
 
 .select-data-scroller-container h2 {
     font-weight: 400;
+    cursor: default;
 }
 
 .datapoint-scroller {
@@ -351,6 +361,15 @@ main {
     cursor: pointer;
 }
 
+.datapoint-option {
+    transition: ease 0.1s;
+    border-radius: 0.5rem;
+}
+
+.datapoint-option:hover {
+    background-color: #a0b7d4;
+}
+
 
 #biArrow {
     width: 15%;
@@ -364,6 +383,7 @@ main {
     justify-content: center;
     align-items: center;
     text-align: center;
+    cursor: default;
 }
 
 #no-datapoints-selected h2 {
@@ -371,9 +391,12 @@ main {
     font-weight: 400;
     color: #8497B0;
     text-shadow: 2px 1px 4px rgb(113, 113, 113);
+    
 }
 
 #no-datapoints-selected p {
     font-weight: 400;
     color: #8497B0;
+    cursor: default;
 }
+

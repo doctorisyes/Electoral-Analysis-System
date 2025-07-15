@@ -53,7 +53,7 @@ class Toolbar {
 const datasetTools = [
     new Tool("Load Election", `${window.static_folder}images/db.svg`, "load-election-workspace"),
     new Tool("Search Election", `${window.static_folder}images/search.svg`, "search-election-workspace"),
-    new Tool("Import Custom", `${window.static_folder}images/file.svg`, "importCustom"),
+    new Tool("Import Custom", `${window.static_folder}images/file.svg`, "import-custom-workspace"),
     new Tool("Select Data", `${window.static_folder}images/point.svg`, "select-data-workspace"),
 ]; // Creates a list of tool objects
 
@@ -87,7 +87,6 @@ function hideAllToolbars() { // Goes through all the toolbars with the class too
 function changeToolbar(element) { // Changes the toolbar that is displayed to the one specified in the element
     const toolbarId = element.getAttribute("data-toolbar-id");
     hideAllToolbars();
-    hideAllWorkspaces();
     document.getElementById(toolbarId).classList.remove("hidden");
 
     removeUnderlinesFromRibbons();
