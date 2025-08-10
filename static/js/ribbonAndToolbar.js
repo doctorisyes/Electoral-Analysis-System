@@ -42,10 +42,20 @@ class Toolbar {
             if (tool.imageSrc == "") {
                 classes += " placeholder-image"; // Add placeholder-image css class if no image is proviced which makes black square
             }
-            let toolHTML = `<div onclick='changeWorkspace(this)' class='${classes}' data-workspace-id='${tool.workspaceId}'>
+            let toolHTML = ``
+            if (tool.workspaceId.includes("workspace")) {
+                toolHTML = `<div onclick='changeWorkspace(this)' class='${classes}' data-workspace-id='${tool.workspaceId}'>
                 <img src='${tool.imageSrc}'>
                 <p>${tool.name}</p>
                 </div>`; // Creates the HTML for the tool
+            } else {
+                toolHTML = `<div onclick='${tool.workspaceId}' class='${classes}'>
+                <img src='${tool.imageSrc}'>
+                <p>${tool.name}</p>
+                </div>`; // Creates the HTML for the tool
+            }
+
+            
             innerHTML += toolHTML; // Adds the HTML to the innerHTML variable
         }
         if (customHTML !== null) {
@@ -78,11 +88,11 @@ const trendsTools = [
 const trendsToolbar = new Toolbar("Trends", trendsTools, true);
 
 const visualiseTools = [
-    new Tool("Auto-Stats", `${window.static_folder}/images/wand.svg`, "auto-stats-workspace"),
-    new Tool("Swingometer", `${window.static_folder}/images/swingometer.svg`, "swingometer"),
-    new Tool("Bar Chart", `${window.static_folder}/images/barChart.svg`, "barChart"),
-    new Tool("Pie Chart", `${window.static_folder}/images/pieChart.svg`, "pieChart"),
-    new Tool("Change Datapoint", `${window.static_folder}/images/file.svg`, "changeDatapoint"),
+    new Tool("Auto-Stats", `${window.static_folder}/images/wand.svg`, "changeTool(this)"),
+    new Tool("Swingometer", `${window.static_folder}/images/swingometer.svg`, "changeTool(this)"),
+    new Tool("Bar Chart", `${window.static_folder}/images/barChart.svg`, "changeTool(this)"),
+    new Tool("Pie Chart", `${window.static_folder}/images/pieChart.svg`, "changeTool(this)"),
+    new Tool("Change Datapoint", `${window.static_folder}/images/file.svg`, "changeTool(this)"),
 ];
 
 let visualiseCustomHTML = `<div id="election-toolbar-info-container">

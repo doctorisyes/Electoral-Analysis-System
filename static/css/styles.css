@@ -246,7 +246,7 @@ main {
     aspect-ratio: 3/2;
     object-fit: cover;
     margin-right: 2rem;
-    border-radius: 1vw;
+    border-radius: 0.5vw;
 }
 
 .country-option h3 {
