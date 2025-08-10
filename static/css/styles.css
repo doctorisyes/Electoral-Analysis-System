@@ -404,8 +404,8 @@ main {
 }
 
 .visualise-chart {
-    width: 22vw;
-    height: 22vw;
+    width: 39vh;
+    aspect-ratio: 1/1;
     border: 0.3rem solid #8497B0;
     border-radius: 1rem;
 }

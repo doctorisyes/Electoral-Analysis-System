@@ -86,8 +86,8 @@ const visualiseTools = [
 ];
 
 let visualiseCustomHTML = `<div id="election-toolbar-info-container">
-<p id="election-en-us">EN: PLACEHOLDER</p>
-<p id="election-district-name">DN: PLACEHOLDER</p>
+<p id="election-en-us">EN: No Election Chosen</p>
+<p id="election-district-name">DN: No Election Chosen</p>
 </div>`
 
 const visualiseToolbar = new Toolbar("Visualise", visualiseTools, true, visualiseCustomHTML);
