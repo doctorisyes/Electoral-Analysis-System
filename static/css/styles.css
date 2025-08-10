@@ -97,7 +97,7 @@ header {
     max-width: fit-content;
     transition: ease 0.1s;
     cursor: pointer;
-    border-radius: 1vw;
+    border-radius: 0.5vw;
     align-items: center;
 }
 
