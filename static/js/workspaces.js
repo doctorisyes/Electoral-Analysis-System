@@ -28,3 +28,11 @@ function workspacesInit() { // Initializes the workspaces by hiding all of them
 }
 
 workspacesInit(); // Calls the workspacesInit function to hide all workspaces
+
+function changeTool(element) {
+    for (tool of document.getElementsByClassName('tool-chosen')) {
+        tool.classList.remove('tool-chosen')
+    }
+
+    element.classList.add('tool-chosen')
+}

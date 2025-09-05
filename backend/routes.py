@@ -33,3 +33,14 @@ def fetchDatapointsByElection(electionId):
         datapoints = datapoint_refinement.getDatapointsList(election)
         datapoints.insert(0, election['election_name']['en_US'])
         return datapoints
+    
+@mainBlueprint.route('/data/election/<electionId>/datapoint/<keys>')
+def fetchDatapointValue(electionId, keys):
+    electionId = int(electionId)
+    election = election_search.getElectionById(electionId)
+    keysList = keys.split("+")
+    keyRoute = election
+    for key in keysList:
+        keyRoute = keyRoute[key]
+
+    return keyRoute
