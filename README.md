@@ -80,7 +80,9 @@ The backend uses the following libraries:
 - Flask
 - requests
 - Chart.js
-  _(More to be added as the project develops.)_
+- Pywebview
+*(More to be added as the project develops.)*
+
 
 ## 🤝 Contributing
 
