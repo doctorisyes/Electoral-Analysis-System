@@ -26,6 +26,7 @@ This project also serves as my coursework for the OCR A Level Computer Science N
 **EAS isn’t designed for small screens (e.g. phones). Please use a larger device for the best experience.**
 
 To run EAS, you will need:
+
 - Python 3.x with pip
 - An ElectionGuide API token (although a cached database has been included)
 
@@ -77,7 +78,8 @@ To set up EAS, clone the repository and use a virtual environment. (You may need
 The backend uses the following libraries:
 
 - Flask
-- requests  
+- requests
+- Chart.js
   _(More to be added as the project develops.)_
 
 ## 🤝 Contributing
