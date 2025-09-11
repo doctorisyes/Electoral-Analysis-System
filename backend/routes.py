@@ -44,3 +44,15 @@ def fetchDatapointValue(electionId, keys):
         keyRoute = keyRoute[key]
 
     return keyRoute
+
+@mainBlueprint.route('/data/election/<electionId>/votes')
+def fetchElectionVotes(electionId):
+    electionId = int(electionId)
+    election = election_search.getElectionById(electionId)
+    return datapoint_refinement.getVotes(election)
+
+@mainBlueprint.route('/data/election/<electionId>/seats')
+def fetchElectionseats(electionId):
+    electionId = int(electionId)
+    election = election_search.getElectionById(electionId)
+    return datapoint_refinement.getSeats(election)

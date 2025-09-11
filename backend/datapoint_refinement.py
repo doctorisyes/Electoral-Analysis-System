@@ -1,4 +1,6 @@
 from . import election_search
+from pathlib import Path # Import Path for file path handling
+import json
 
 def determineExtraDatapoints(election):
     extraDatapoints = []
@@ -99,7 +101,45 @@ def datapointKeysRecusrion(thing):
     elif (type(thing) == str) or (type(thing) == int) or (type(thing) == float) or (type(thing) == bool) :
         return 'oneThingInside'
 
+def getVotes(election):
+    xValues = []
+    yValues = []
+    barColours = []
+    file_path = Path(__file__).resolve().parent.parent / 'resources' / 'country_metadata' / 'party_colours.json' 
+    with open(file_path, "r") as file:
+        colourMapperFile = json.load(file) # Get the dictionary map for continents stored in the filepath
+        colourMapper = colourMapperFile[election['district']['district_country']]
+    for party in election['parties']:
+        xValues.append(party['name'])
+        yValues.append(party['votes'])
 
+        if party['name'] in colourMapper:
+            barColours.append("#" + colourMapper[party['name']])
+        else:
+            barColours.append("")
+
+    return {'xValues':xValues, 'yValues':yValues, 'barColours':barColours}
+
+def getSeats(election):
+    xValues = []
+    yValues = []
+    barColours = []
+    file_path = Path(__file__).resolve().parent.parent / 'resources' / 'country_metadata' / 'party_colours.json' 
+    with open(file_path, "r") as file:
+        colourMapperFile = json.load(file) # Get the dictionary map for continents stored in the filepath
+        colourMapper = colourMapperFile[election['district']['district_country']]
+    for party in election['parties']:
+        xValues.append(party['name'])
+        yValues.append(party['seats_won'])
+
+        if party['name'] in colourMapper:
+            barColours.append("#" + colourMapper[party['name']])
+        else:
+            barColours.append("")
+
+    return {'xValues':xValues, 'yValues':yValues, 'barColours':barColours}
 
 if __name__ == "__main__":
-    print(getDatapointsList(election_search.getElectionById(4446)))
+    print(getSeats(election_search.getElectionById(4446)))
+
+    

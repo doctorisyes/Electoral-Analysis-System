@@ -410,6 +410,19 @@ main {
     border-radius: 1rem;
 }
 
+.selected-visualise-chart {
+      animation: flashBorder 0.5s infinite;
+    }
+
+    @keyframes flashBorder {
+      0%, 100% {
+        border-color: #8497B0;
+      }
+      50% {
+        border-color: transparent;
+      }
+    }
+
 #visualise-workspace {
     display: flex;
     flex-direction: column;
@@ -439,3 +452,4 @@ main {
     border-radius: 0.25rem;
     font-size: 2vh;
 }
+
