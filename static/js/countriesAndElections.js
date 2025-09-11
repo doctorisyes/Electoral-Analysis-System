@@ -122,4 +122,5 @@ function chooseElection(element) {
     }
     element.classList.add("election-option-chosen"); // Add the class to the clicked element to mark it as chosen
     fetchDatapoints(chosenElectionId);
+    visualiseWorkspaceLaunch(chosenElectionId)
 }

@@ -34,8 +34,8 @@ header {
 #logo {
     align-self: center;
     height: 100%;
-    padding: 2rem;
-    padding-left: 1.5rem;
+    padding: 3vh;
+    padding-left: 2vh;
     border-right: 0.1rem solid black
 }
 
@@ -54,7 +54,7 @@ header {
 }
 
 #ribbon h3 {
-    font-size: 2em;
+    font-size: 4vh;
     font-weight: 400;
     margin-left: 0.5em;
     color: black;
@@ -65,14 +65,14 @@ header {
 
 #ribbon h3:hover {
     background-color: #8497B0;
-    border-radius: 0.25em;
+    border-radius: 0.5vw;
 }
 
 .ribbon-option-underlined {
     text-decoration: underline ;
     text-decoration-color: #FF0000;
-    text-decoration-thickness: 0.2rem;
-    text-underline-offset: 0.2rem;
+    text-decoration-thickness: 0.4vh;
+    text-underline-offset: 0.4vh;
 }
 
 #toolbar-container {
@@ -84,24 +84,34 @@ header {
 .toolbar {
     height: 100%;
     display: flex;
-    padding-left: 0.5em;
-    gap: 0.5em;
+    padding-left: 1vw;
+    gap: 1vw;
     align-items: center;
 }
 
 .tool  {
     display: flex;
     flex-direction: column;
-    padding: 0.25em;
+    padding: 0.75vh;
     height: 90%;
     max-width: fit-content;
     transition: ease 0.1s;
     cursor: pointer;
+    border-radius: 0.5vw;
+    align-items: center;
 }
 
 .tool:hover {
+    background-color: #bec3c9;
+}
+
+.tool-chosen {
     background-color: #8497B0;
-    border-radius: 0.5em;
+    transition: ease 0.1s;
+}
+
+.tool-chosen:hover {
+    background-color: #90a4be;
 }
 
 .tool img {
@@ -113,7 +123,7 @@ header {
 .tool p {
     margin-top: 0.2em;
     font-weight: 200;
-    font-size: 0.75em;
+    font-size: 1.5vh;
 }
 
 main {
@@ -143,7 +153,7 @@ main {
     text-align: center;
     background-color: #8497B0;
     padding: 0.75rem;
-    border-radius: 1rem;
+    border-radius: 1vw;
     color: white;
     font-weight: 200;
     cursor: default;
@@ -171,7 +181,7 @@ main {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     transition: ease 0.1s;
-    border-radius: 0.5rem;
+    border-radius: 1vw;
     cursor: pointer;
 }
 
@@ -218,7 +228,7 @@ main {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     transition: ease 0.1s;
-    border-radius: 0.5rem;
+    border-radius: 1vw;
     cursor: pointer;
 }
 
@@ -236,7 +246,7 @@ main {
     aspect-ratio: 3/2;
     object-fit: cover;
     margin-right: 2rem;
-    border-radius: 0.5rem;
+    border-radius: 0.5vw;
 }
 
 .country-option h3 {
@@ -257,7 +267,7 @@ main {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     transition: ease 0.1s;
-    border-radius: 0.5rem;
+    border-radius: 1vw;
     cursor: pointer;
 }
 
@@ -274,7 +284,7 @@ main {
     font-size: 400%;
     object-fit: cover;
     margin-right: 2rem;
-    border-radius: 0.5rem;
+    border-radius: 1vw;
     color: white;
     font-weight: 1000;
     text-shadow: 2px 1px 4px rgba(0,0,0,0.6);
@@ -299,12 +309,12 @@ main {
 
 #select-data-election-name {
     width: 60%;
-    padding: 0.8rem;
-    font-size: 1.5rem;
+    padding: 1vh;
+    font-size: 2.5vh;
     background-color: #8497B0;
     color: white;
     text-align: center;
-    border-radius: 0.5rem;
+    border-radius: 1vw;
     font-weight: 200;;
 }
 
@@ -312,9 +322,10 @@ main {
 
 #datapoints-container {
     display: flex;
-    height:80%;
+    height:70vh;
     width: 100%;
     justify-content: center;
+    align-items: center;
 
 }
 
@@ -329,6 +340,8 @@ main {
 
 .select-data-scroller-container h2 {
     font-weight: 400;
+    cursor: default;
+    font-size: 3vh;
 }
 
 .datapoint-scroller {
@@ -351,6 +364,15 @@ main {
     cursor: pointer;
 }
 
+.datapoint-option {
+    transition: ease 0.1s;
+    border-radius: 1vw;
+}
+
+.datapoint-option:hover {
+    background-color: #a0b7d4;
+}
+
 
 #biArrow {
     width: 15%;
@@ -364,6 +386,7 @@ main {
     justify-content: center;
     align-items: center;
     text-align: center;
+    cursor: default;
 }
 
 #no-datapoints-selected h2 {
@@ -371,9 +394,62 @@ main {
     font-weight: 400;
     color: #8497B0;
     text-shadow: 2px 1px 4px rgb(113, 113, 113);
+    
 }
 
 #no-datapoints-selected p {
     font-weight: 400;
     color: #8497B0;
+    cursor: default;
 }
+
+.visualise-chart {
+    width: 39vh;
+    aspect-ratio: 1/1;
+    border: 0.3rem solid #8497B0;
+    border-radius: 1rem;
+}
+
+.selected-visualise-chart {
+      animation: flashBorder 0.5s infinite;
+    }
+
+    @keyframes flashBorder {
+      0%, 100% {
+        border-color: #8497B0;
+      }
+      50% {
+        border-color: transparent;
+      }
+    }
+
+#visualise-workspace {
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+#election-toolbar-info-container {
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    gap: 1vh;
+    border-left: 0.1rem solid black;
+    padding-left: 1rem;
+    
+}
+
+#election-toolbar-info-container p {
+    background-color: #8497B0;
+    color: white;
+    font-weight: 200;
+    padding: 0.5vh;
+    border-radius: 0.25rem;
+    font-size: 2vh;
+}
+
