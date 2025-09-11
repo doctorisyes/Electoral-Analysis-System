@@ -97,7 +97,7 @@ header {
     max-width: fit-content;
     transition: ease 0.1s;
     cursor: pointer;
-    border-radius: 1vw;
+    border-radius: 0.5vw;
     align-items: center;
 }
 
@@ -246,7 +246,7 @@ main {
     aspect-ratio: 3/2;
     object-fit: cover;
     margin-right: 2rem;
-    border-radius: 1vw;
+    border-radius: 0.5vw;
 }
 
 .country-option h3 {
@@ -401,5 +401,55 @@ main {
     font-weight: 400;
     color: #8497B0;
     cursor: default;
+}
+
+.visualise-chart {
+    width: 39vh;
+    aspect-ratio: 1/1;
+    border: 0.3rem solid #8497B0;
+    border-radius: 1rem;
+}
+
+.selected-visualise-chart {
+      animation: flashBorder 0.5s infinite;
+    }
+
+    @keyframes flashBorder {
+      0%, 100% {
+        border-color: #8497B0;
+      }
+      50% {
+        border-color: transparent;
+      }
+    }
+
+#visualise-workspace {
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+#election-toolbar-info-container {
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    gap: 1vh;
+    border-left: 0.1rem solid black;
+    padding-left: 1rem;
+    
+}
+
+#election-toolbar-info-container p {
+    background-color: #8497B0;
+    color: white;
+    font-weight: 200;
+    padding: 0.5vh;
+    border-radius: 0.25rem;
+    font-size: 2vh;
 }
 

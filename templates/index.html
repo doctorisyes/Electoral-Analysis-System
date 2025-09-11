@@ -6,6 +6,7 @@
     <script>
         window.static_folder = "{{ url_for('static', filename='') }}";
     </script>   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 <body>
     <header>
@@ -36,7 +37,6 @@
             </div>
         </div>
         <div id="search-election-workspace" class="workspace">This is placeholder text for the search election workspace</div>
-        <div id="auto-stats-workspace" class="workspace">This is a placeholder text for the auto-stats workspace</div>
         <div id="select-data-workspace" class="workspace">
             <p id="select-data-election-name">Choose an Election!</p>
             <div id="datapoints-container">
@@ -59,8 +59,25 @@
             </div>
             
         </div>
+        <div id="visualise-workspace" class="workspace">
+            <div id="visualise-charts-row-1" class="chart-row">
+                <div class="visualise-chart" onclick="selectChart(this)" data-row=0 data-column=0></div>
+                <div class="visualise-chart" onclick="selectChart(this)" data-row=0 data-column=1></div>
+                <div class="visualise-chart" onclick="selectChart(this)" data-row=0 data-column=2></div>
+                <div class="visualise-chart" onclick="selectChart(this)" data-row=0 data-column=3></div>
+            </div>
+            <div id="visualise-charts-row-2" class="chart-row">
+                <div class="visualise-chart" onclick="selectChart(this)" data-row=1 data-column=0></div>
+                <div class="visualise-chart" onclick="selectChart(this)" data-row=1 data-column=1></div>
+                <div class="visualise-chart" onclick="selectChart(this)" data-row=1 data-column=2></div>
+                <div class="visualise-chart" onclick="selectChart(this)" data-row=1 data-column=3></div>
+            </div>
+            
+
+        </div>
         <script src=" {{ url_for('static', filename='js/workspaces.js') }}"></script>
         <script src=" {{ url_for('static', filename='js/datapoints.js') }}"></script>
+        <script src=" {{ url_for('static', filename='js/visualise.js') }}"></script>
     </main>
 
 </body>
