@@ -88,10 +88,10 @@ const trendsTools = [
 const trendsToolbar = new Toolbar("Trends", trendsTools, true);
 
 const visualiseTools = [
-    new Tool("Auto-Stats", `${window.static_folder}/images/wand.svg`, "changeTool(this)"),
+    new Tool("Auto-Stats", `${window.static_folder}/images/wand.svg`, "autoStatsLaunch(this)"),
     new Tool("Swingometer", `${window.static_folder}/images/swingometer.svg`, "changeTool(this)"),
-    new Tool("Bar Chart", `${window.static_folder}/images/barChart.svg`, "changeTool(this)"),
-    new Tool("Pie Chart", `${window.static_folder}/images/pieChart.svg`, "changeTool(this)"),
+    new Tool("Bar Chart", `${window.static_folder}/images/barChart.svg`, "changeToBarChart(this)"),
+    new Tool("Pie Chart", `${window.static_folder}/images/pieChart.svg`, "changeToPieChart(this)"),
     new Tool("Change Datapoint", `${window.static_folder}/images/file.svg`, "changeTool(this)"),
 ];
 
@@ -155,4 +155,5 @@ function visualiseWorkspaceLaunch(electionId) {
     .then(data => {
         document.getElementById('election-district-name').innerHTML = "DN: " + data
     });
+
 }
