@@ -25,7 +25,7 @@ def request_api(): # Function to request data from the ElectionGuide API
 def read_api_data():
     file_path = Path(__file__).resolve().parent.parent / 'resources' / 'api_data' / 'main_db.json' # File path to DB
     
-    with open(file_path, 'r') as file: # Open file at filepath in read mode
+    with open(file_path, 'r', encoding='utf-8') as file: # Open file at filepath in read mode
         data = json.load(file) # Load the JSON data into variable
 
     return data # Return the JSON data

@@ -15,7 +15,7 @@ def getContinentLists():
     allCountries = findCountries() # Get a list of all the countries that could be found
 
     file_path = Path(__file__).resolve().parent.parent / 'resources' / 'country_metadata' / 'continents.json' 
-    with open(file_path, "r") as file:
+    with open(file_path, "r", encoding='utf-8') as file:
         continentMapper = json.load(file) # Get the dictionary map for continents stored in the filepath
 
     continentLists = {}

@@ -106,7 +106,7 @@ def getVotes(election):
     yValues = []
     barColours = []
     file_path = Path(__file__).resolve().parent.parent / 'resources' / 'country_metadata' / 'party_colours.json' 
-    with open(file_path, "r") as file:
+    with open(file_path, "r", encoding='utf-8') as file:
         colourMapperFile = json.load(file) # Get the dictionary map for continents stored in the filepath
         colourMapper = colourMapperFile[election['district']['district_country']]
     for party in election['parties']:
@@ -125,7 +125,7 @@ def getSeats(election):
     yValues = []
     barColours = []
     file_path = Path(__file__).resolve().parent.parent / 'resources' / 'country_metadata' / 'party_colours.json' 
-    with open(file_path, "r") as file:
+    with open(file_path, "r", encoding='utf-8') as file:
         colourMapperFile = json.load(file) # Get the dictionary map for continents stored in the filepath
         colourMapper = colourMapperFile[election['district']['district_country']]
     for party in election['parties']:
