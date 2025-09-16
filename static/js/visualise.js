@@ -127,6 +127,7 @@ function autoStatsLaunch(button) {
     .then(data => {
         new slot(0,1,'Total Seats', data['xValues'], data['yValues'], data['barColours'], 'Seats')
     });
+    
 }
 
 let selectedChartLocation = [null, null]

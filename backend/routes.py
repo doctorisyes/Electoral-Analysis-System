@@ -2,6 +2,7 @@ from flask import Blueprint, render_template # Access the Blueprint class and th
 from . import continent_country_finder # Import the function that gets the list of countries and continents
 from . import election_search # Import the function that gets the elections by country code
 from . import datapoint_refinement
+from . import datapoint_calculation
 
 mainBlueprint = Blueprint('main_blueprint', __name__) # Create an instance of the blueprint class
 
@@ -57,6 +58,14 @@ def fetchElectionseats(electionId):
     election = election_search.getElectionById(electionId)
     return datapoint_refinement.getSeats(election)
 
+@mainBlueprint.route('/data/election/<electionId>/proportionality-error')
+def fetchProportionalityError(electionId):
+    electionId = int(electionId)
+    election = election_search.getElectionById(electionId)
+    partySeats = datapoint_refinement.getSeats(election)['yValues']
+    partyVotes = datapoint_refinement.getVotes(election)['yValues']
+    return {'error':datapoint_calculation.calculateProportionalityError(partyVotes, partySeats)}
+
 @mainBlueprint.route('/data/election/<electionId>/turnout')
 def fetchVoterTurnout(electionId):
     electionId = int(electionId)
@@ -87,3 +96,4 @@ def fetchVoterTurnout(electionId):
             'electorate': electorate,
             'turnout': f"{round(turnout,2)}%"
         }
+    
