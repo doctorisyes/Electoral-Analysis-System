@@ -97,6 +97,24 @@ class slot {
 
 }
 
+function getVotes(x,y) {
+    fetch(`/data/election/${chosenElectionId}/votes`)
+    .then(response => response.json())
+    .then(data => {
+        new slot(x,y,'Total Votes', data['xValues'], data['yValues'], data['barColours'], 'Votes')
+    });
+}
+
+function getSeats(x,y) {
+    fetch(`/data/election/${chosenElectionId}/seats`)
+    .then(response => response.json())
+    .then(data => {
+        new slot(x,y,'Total Seats', data['xValues'], data['yValues'], data['barColours'], 'Seats')
+    });
+}
+
+
+
 function autoStatsLaunch(button) {
     changeTool(button)
     fetch(`/data/election/${chosenElectionId}/votes`)
