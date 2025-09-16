@@ -127,7 +127,13 @@ function autoStatsLaunch(button) {
     .then(data => {
         new slot(0,1,'Total Seats', data['xValues'], data['yValues'], data['barColours'], 'Seats')
     });
-    
+    fetch(`/data/election/${chosenElectionId}/proportionality-error`)
+    .then(response => response.json())
+    .then(data => {
+        const error = parseFloat(data['error']).toFixed(2)
+        new slot(0,2,'Proportionality Error', ['Unproportional', 'Proportional'], [error, (100-error)], ['Red', 'Blue'], '%')
+    }
+    )
 }
 
 let selectedChartLocation = [null, null]
