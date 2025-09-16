@@ -96,4 +96,9 @@ def fetchVoterTurnout(electionId):
             'electorate': electorate,
             'turnout': f"{round(turnout,2)}%"
         }
-    
+    else:
+        return {
+            'error': 'Insufficient data to calculate turnout.',
+            'hadVotes': votes is not None,
+            'hadElectorate': electorate is not None
+        }

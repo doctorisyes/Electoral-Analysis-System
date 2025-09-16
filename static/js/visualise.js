@@ -113,27 +113,33 @@ function getSeats(x,y) {
     });
 }
 
-
-
-function autoStatsLaunch(button) {
-    changeTool(button)
-    fetch(`/data/election/${chosenElectionId}/votes`)
-    .then(response => response.json())
-    .then(data => {
-        new slot(0,0,'Total Votes', data['xValues'], data['yValues'], data['barColours'], 'Votes')
-    });
-    fetch(`/data/election/${chosenElectionId}/seats`)
-    .then(response => response.json())
-    .then(data => {
-        new slot(0,1,'Total Seats', data['xValues'], data['yValues'], data['barColours'], 'Seats')
-    });
+function getProportionalityError(x,y) {
     fetch(`/data/election/${chosenElectionId}/proportionality-error`)
     .then(response => response.json())
     .then(data => {
         const error = parseFloat(data['error']).toFixed(2)
-        new slot(0,2,'Proportionality Error', ['Unproportional', 'Proportional'], [error, (100-error)], ['Red', 'Blue'], '%')
+        new slot(x,y,'Proportionality Error', ['Unproportional', 'Proportional'], [error, (100-error)], ['Red', 'Blue'], '%')
     }
     )
+}
+
+function getTurnout(x,y) {
+    fetch(`/data/election/${chosenElectionId}/turnout`)
+    .then(response => response.json())
+    .then(data => {
+        const votes = parseInt(data['votes'])
+        const electorate = parseInt(data['electorate'])
+        new slot(x,y,'Voter Turnout', ['Did not vote', 'Did vote'], [(electorate-votes), votes], ['Red', 'Blue'], 'Votes')
+    }
+    )
+}
+
+function autoStatsLaunch(button) {
+    changeTool(button);
+    getVotes(0,0);
+    getSeats(0,1);
+    getProportionalityError(0,2);
+    getTurnout(0,3);
 }
 
 let selectedChartLocation = [null, null]
