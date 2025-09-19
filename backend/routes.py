@@ -50,10 +50,13 @@ def fetchDatapointValue(electionId, keys):
 def fetchElectionVotes(electionId):
     electionId = int(electionId)
     election = election_search.getElectionById(electionId)
-    return datapoint_refinement.getVotes(election)
+    if datapoint_refinement.getVotes(election) == False:
+        return {'dataIsPresent': False}
+    else:
+        return datapoint_refinement.getVotes(election)
 
 @mainBlueprint.route('/data/election/<electionId>/seats')
-def fetchElectionseats(electionId):
+def fetchElectionSeats(electionId):
     electionId = int(electionId)
     election = election_search.getElectionById(electionId)
     return datapoint_refinement.getSeats(election)
@@ -62,9 +65,19 @@ def fetchElectionseats(electionId):
 def fetchProportionalityError(electionId):
     electionId = int(electionId)
     election = election_search.getElectionById(electionId)
-    partySeats = datapoint_refinement.getSeats(election)['yValues']
-    partyVotes = datapoint_refinement.getVotes(election)['yValues']
-    return {'error':datapoint_calculation.calculateProportionalityError(partyVotes, partySeats)}
+    
+    try:
+        partySeats = datapoint_refinement.getSeats(election)['yValues']
+        partyVotes = datapoint_refinement.getVotes(election)['yValues']
+    except TypeError:
+        return {'dataIsPresent': False}
+    except KeyError:
+        return {'dataIsPresent': False}
+
+    if partySeats == [] or partyVotes == [] or partyVotes == None or partySeats == None:
+        return {'dataIsPresent': False}
+    
+    return {'error':datapoint_calculation.calculateProportionalityError(partyVotes, partySeats), 'dataIsPresent':True}
 
 @mainBlueprint.route('/data/election/<electionId>/turnout')
 def fetchVoterTurnout(electionId):
@@ -94,11 +107,13 @@ def fetchVoterTurnout(electionId):
         return {
             'votes': votes,
             'electorate': electorate,
-            'turnout': f"{round(turnout,2)}%"
+            'turnout': f"{round(turnout,2)}%",
+            'dataIsPresent': True
         }
     else:
         return {
             'error': 'Insufficient data to calculate turnout.',
             'hadVotes': votes is not None,
-            'hadElectorate': electorate is not None
+            'hadElectorate': electorate is not None,
+            'dataIsPresent': False
         }

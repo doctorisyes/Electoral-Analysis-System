@@ -2,6 +2,18 @@ from . import election_search
 from pathlib import Path # Import Path for file path handling
 import json
 
+def identifyElectionType(election):
+    isReferendum = (lambda election: election['basic_data']['election_type'] == 'Referendum')(election)
+    isPresidential = (lambda election: election['basic_data']['election_type'] == 'Presidential')(election)
+    isGeneralElection = not (isReferendum and isPresidential)
+
+    if isReferendum:
+        return 'isReferendum'
+    if isPresidential:
+        return 'isPresidential'
+    if isGeneralElection:
+        return 'isGeneralElection'
+
 def determineExtraDatapoints(election):
     extraDatapoints = []
 
@@ -109,16 +121,34 @@ def getVotes(election):
     with open(file_path, "r") as file:
         colourMapperFile = json.load(file) # Get the dictionary map for continents stored in the filepath
         colourMapper = colourMapperFile[election['district']['district_country']]
-    for party in election['parties']:
-        xValues.append(party['name'])
-        yValues.append(party['votes'])
 
-        if party['name'] in colourMapper:
-            barColours.append("#" + colourMapper[party['name']])
-        else:
-            barColours.append("")
+    electionType = identifyElectionType(election)
 
-    return {'xValues':xValues, 'yValues':yValues, 'barColours':barColours}
+    if electionType == 'isGeneralElection':
+        if election['parties'] != None:
+            for party in election['parties']:
+                xValues.append(party['name'])
+                yValues.append(party['votes'])
+
+                if party['name'] in colourMapper:
+                    barColours.append("#" + colourMapper[party['name']])
+                else:
+                    barColours.append("")
+
+    if electionType == 'isPresidential':
+        for candidate in election['candidates']:
+            xValues.append(f"{candidate['name']} - {candidate['party']}")
+            yValues.append(candidate['votes'])
+
+            if candidate['party'] in colourMapper:
+                barColours.append("#" + colourMapper[candidate['party']])
+            else:
+                barColours.append("")
+
+    if xValues == [] or yValues == [] or None in xValues or None in yValues:
+        return False
+    else:
+        return {'xValues':xValues, 'yValues':yValues, 'barColours':barColours, 'dataIsPresent': True}
 
 def getSeats(election):
     xValues = []
@@ -128,16 +158,24 @@ def getSeats(election):
     with open(file_path, "r") as file:
         colourMapperFile = json.load(file) # Get the dictionary map for continents stored in the filepath
         colourMapper = colourMapperFile[election['district']['district_country']]
-    for party in election['parties']:
-        xValues.append(party['name'])
-        yValues.append(party['seats_won'])
 
-        if party['name'] in colourMapper:
-            barColours.append("#" + colourMapper[party['name']])
-        else:
-            barColours.append("")
+    electionType = identifyElectionType(election)
 
-    return {'xValues':xValues, 'yValues':yValues, 'barColours':barColours}
+    if electionType == 'isGeneralElection':
+        if election['parties'] != None:
+            for party in election['parties']:
+                xValues.append(party['name'])
+                yValues.append(party['seats_won'])
+
+                if party['name'] in colourMapper:
+                    barColours.append("#" + colourMapper[party['name']])
+                else:
+                    barColours.append("")
+
+    if xValues == [] or yValues == []:
+        return {'dataIsPresent': False}
+    else:
+        return {'xValues':xValues, 'yValues':yValues, 'barColours':barColours, 'dataIsPresent': True}
 
 if __name__ == "__main__":
     print(getSeats(election_search.getElectionById(4446)))

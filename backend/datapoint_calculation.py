@@ -1,12 +1,15 @@
-def calculateProportionalityError(partyVotes, partySeats):
-    totalVotes = sum(partyVotes)
-    totalSeats = sum(partySeats)
-    if len(partyVotes) == len(partySeats):
-        finalSum = 0
-        for i in range(len(partyVotes)):
-            finalSum += abs((((partySeats[i]) / (totalSeats)) - ((partyVotes[i]) / (totalVotes))))
+from . import datapoint_refinement
 
-        return (finalSum/2)*100
+def calculateProportionalityError(partyVotes, partySeats):
+    if type(partySeats) == list and type(partyVotes) == list and partyVotes != [] and partySeats != [] and not (None in partyVotes) and not (None in partySeats):
+        totalVotes = sum(partyVotes)
+        totalSeats = sum(partySeats)
+        if len(partyVotes) == len(partySeats):
+            finalSum = 0
+            for i in range(len(partyVotes)):
+                finalSum += abs((((partySeats[i]) / (totalSeats)) - ((partyVotes[i]) / (totalVotes))))
+
+            return (finalSum/2)*100
     
     else:
         return 'Invalid Input Data'
