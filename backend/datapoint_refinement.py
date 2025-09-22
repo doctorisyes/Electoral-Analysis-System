@@ -123,7 +123,7 @@ def getVotes(election):
         colourMapper = colourMapperFile[election['district']['district_country']]
 
     electionType = identifyElectionType(election)
-
+    referendum = False
     if electionType == 'isGeneralElection':
         if election['parties'] != None:
             for party in election['parties']:
@@ -135,7 +135,7 @@ def getVotes(election):
                 else:
                     barColours.append("")
 
-    if electionType == 'isPresidential':
+    elif electionType == 'isPresidential':
         for candidate in election['candidates']:
             xValues.append(f"{candidate['name']} - {candidate['party']}")
             yValues.append(candidate['votes'])
@@ -145,10 +145,16 @@ def getVotes(election):
             else:
                 barColours.append("")
 
+    if electionType == 'isReferendum':
+        for response in election['provisions'][0]['responses']:
+            xValues.append(response['option'])
+            yValues.append(response['votes'])
+            referendum = True
+
     if xValues == [] or yValues == [] or None in xValues or None in yValues:
         return False
     else:
-        return {'xValues':xValues, 'yValues':yValues, 'barColours':barColours, 'dataIsPresent': True}
+        return {'xValues':xValues, 'yValues':yValues, 'barColours':barColours, 'dataIsPresent': True, 'isReferendum':referendum}
 
 def getSeats(election):
     xValues = []

@@ -123,8 +123,11 @@ function getVotes(x,y) {
     .then(response => response.json())
     .then(data => {
         if (data['dataIsPresent']) {
-            console.log(currentColumn)
-            new slot(x,currentColumn,'Total Votes', data['xValues'], data['yValues'], data['barColours'], 'Votes')
+            barColours = data['barColours']
+            if (data['isReferendum'] && data['xValues'].length == 2) {
+                barColours = ['Blue', 'Red']
+            }
+            new slot(x,currentColumn,'Total Votes', data['xValues'], data['yValues'], barColours, 'Votes')
             currentColumn += 1
             return true
         }
