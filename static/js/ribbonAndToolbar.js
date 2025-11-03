@@ -96,8 +96,13 @@ const visualiseTools = [
 ];
 
 let visualiseCustomHTML = `<div id="election-toolbar-info-container">
+<div class="election-toolbar-info-container-column">
 <p id="election-en-us">EN: No Election Chosen</p>
 <p id="election-district-name">DN: No Election Chosen</p>
+</div>
+<div class="election-toolbar-info-container-column">
+<p id="provision-title" class="hidden">Provision Title: No Referendum Selected</p>
+</div>
 </div>`
 
 const visualiseToolbar = new Toolbar("Visualise", visualiseTools, true, visualiseCustomHTML);
@@ -145,6 +150,20 @@ function removeUnderlinesFromRibbons() { // Removes the underlines from all the 
 }
 
 function visualiseWorkspaceLaunch(electionId) {
+    fetch(`/data/election/${electionId}/election-type`)
+    .then(response => response.text())
+    .then(data => {
+        if (data == 'isReferendum') {
+            fetch(`data/referendum/${electionId}/provision-title`)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('provision-title').innerHTML = "PN: " + data
+                document.getElementById('provision-title').classList.remove('hidden')
+            })
+        } else {
+            document.getElementById('provision-title').classList.add('hidden')
+        }
+    });
     fetch(`/data/election/${electionId}/datapoint/election_name+en_US`)
     .then(response => response.text())
     .then(data => {

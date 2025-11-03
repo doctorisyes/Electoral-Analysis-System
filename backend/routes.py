@@ -61,6 +61,18 @@ def fetchElectionSeats(electionId):
     election = election_search.getElectionById(electionId)
     return datapoint_refinement.getSeats(election)
 
+@mainBlueprint.route('/data/election/<electionId>/election-type')
+def fetchElectionType(electionId):
+    electionId = int(electionId)
+    election = election_search.getElectionById(electionId)
+    return datapoint_refinement.identifyElectionType(election)
+
+@mainBlueprint.route('/data/referendum/<electionId>/provision-title')
+def fetchProvisionTitle(electionId):
+    electionId = int(electionId)
+    election = election_search.getElectionById(electionId)
+    return election["provisions"][0]["provision"]
+
 @mainBlueprint.route('/data/election/<electionId>/proportionality-error')
 def fetchProportionalityError(electionId):
     electionId = int(electionId)
@@ -78,6 +90,68 @@ def fetchProportionalityError(electionId):
         return {'dataIsPresent': False}
     
     return {'error':datapoint_calculation.calculateProportionalityError(partyVotes, partySeats), 'dataIsPresent':True}
+
+@mainBlueprint.route('/data/election/<electionId>/most-overrepresented-party')
+def fetchMostOverrepresentedParty(electionId):
+    electionId = int(electionId)
+    election = election_search.getElectionById(electionId)
+    try:
+        partySeats = datapoint_refinement.getSeats(election)['yValues']
+        partyVotes = datapoint_refinement.getVotes(election)['yValues']
+    except TypeError:
+        return {'dataIsPresent': False}
+    except KeyError:
+        return {'dataIsPresent': False}
+
+    if partySeats == [] or partyVotes == [] or partyVotes == None or partySeats == None:
+        return {'dataIsPresent': False}
+    
+    return {'party':datapoint_refinement.getSeats(election)['xValues'][datapoint_calculation.calculateMostOverrepresentedParty(partyVotes, partySeats)], 'dataIsPresent':True}
+
+@mainBlueprint.route('/data/election/<electionId>/most-underrepresented-party')
+def fetchMostUnderrepresentedParty(electionId):
+    electionId = int(electionId)
+    election = election_search.getElectionById(electionId)
+    try:
+        partySeats = datapoint_refinement.getSeats(election)['yValues']
+        partyVotes = datapoint_refinement.getVotes(election)['yValues']
+    except TypeError:
+        return {'dataIsPresent': False}
+    except KeyError:
+        return {'dataIsPresent': False}
+
+    if partySeats == [] or partyVotes == [] or partyVotes == None or partySeats == None:
+        return {'dataIsPresent': False}
+
+    return {'party':datapoint_refinement.getSeats(election)['xValues'][datapoint_calculation.calculateMostUnderrepresentedParty(partyVotes, partySeats)], 'dataIsPresent':True}
+
+@mainBlueprint.route('/data/election/<electionId>/seat-vote-ratio')
+def fetchSeatVoteRatio(electionId):
+    electionId = int(electionId)
+    election = election_search.getElectionById(electionId)
+
+    try:
+        partySeats = datapoint_refinement.getSeats(election)['yValues']
+    except TypeError:
+        return {'dataIsPresent': False}
+    except KeyError:
+        return {'dataIsPresent': False}
+
+    if partySeats == [] or partySeats == None:
+        return {'dataIsPresent': False}
+    
+    
+    votesOption1 = election['results']['valid_votes'] is not None
+    votesOption2 = election['results']['cast_votes'] is not None
+
+    if votesOption1:
+        votes = election['results']['valid_votes']
+    elif votesOption2:
+        votes = election['results']['cast_votes']
+
+
+    if votes is not None:
+        return {'ratio':datapoint_calculation.calculateSeatToVoteRatio(int(sum(partySeats)),int(votes)), 'dataIsPresent':True}
 
 @mainBlueprint.route('/data/election/<electionId>/turnout')
 def fetchVoterTurnout(electionId):

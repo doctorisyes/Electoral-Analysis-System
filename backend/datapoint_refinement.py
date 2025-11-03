@@ -3,8 +3,16 @@ from pathlib import Path # Import Path for file path handling
 import json
 
 def identifyElectionType(election):
-    isReferendum = (lambda election: election['basic_data']['election_type'] == 'Referendum')(election)
-    isPresidential = (lambda election: election['basic_data']['election_type'] == 'Presidential')(election)
+    isReferendum = False
+    if "provisions" in election:
+        if election["provisions"] != None:
+            isReferendum = True
+
+    isPresidential = False
+    if "candidates" in election:
+        if election["candidates"] != None:
+            isPresidential = True
+
     isGeneralElection = not (isReferendum and isPresidential)
 
     if isReferendum:
@@ -17,9 +25,7 @@ def identifyElectionType(election):
 def determineExtraDatapoints(election):
     extraDatapoints = []
 
-    isReferendum = (lambda election: election['basic_data']['election_type'] == 'Referendum')(election)
-    isPresidential = (lambda election: election['basic_data']['election_type'] == 'Presidential')(election)
-    isGeneralElection = not (isReferendum and isPresidential)
+    electionType = identifyElectionType(election)
 
     hasTotalVotes = (election['results']['valid_votes'] is not None) or (election['results']['cast_votes'] is not None)
     hasElectoratePopulation = (election['voting_and_voters']['registered_voters'] is not None) or (election['voting_and_voters']['eligible_voters'] is not None)
@@ -28,7 +34,7 @@ def determineExtraDatapoints(election):
         extraDatapoints.append("voter_turnout")
 
 
-    if isGeneralElection:
+    if electionType == 'isGeneralElection':
         if election['parties'] is not None:
             if (election['parties'][0]['seats_won'] is not None) and ((election['parties'][0]['votes'] is not None) or (election['parties'][0]['percentage'] is not None)):
                 extraDatapoints.append("proportionality_error")
