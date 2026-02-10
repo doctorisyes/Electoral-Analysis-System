@@ -21,7 +21,7 @@ This project also serves as my coursework for the OCR A Level Computer Science N
 
 ## 📋 Requirements
 
-**For a limited time only, the EAS will also be hosted on a <a href="https://eas.westhatchcss.tech">web server</a> negating the need for any of this.**
+**For a limited time only, the EAS will also be hosted on a <a href="https://electoral-analysis-system-5r8p2.ondigitalocean.app">web server</a> negating the need for any of this.**
 
 **EAS isn’t designed for small screens (e.g. phones). Please use a larger device for the best experience.**
 
